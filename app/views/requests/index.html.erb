@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pedidos para <%= @order.name %></h1>
+
+<ul>
+  <% @order.requests.each do |request| %>
+    <li>
+      <strong><%= request.requester %>: </strong>
+        <%= request.comment %>
+        </li> 
+  <% end %>
+</ul>
+
+<br>
+
+

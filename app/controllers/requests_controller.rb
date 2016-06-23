@@ -2,20 +2,13 @@ class RequestsController < ApplicationController
 	before_action :set_request, only: [:show, :edit, :update, :destroy]
 
   def index
-    @requests = Request.all
+    @order = Order.find(params.require(:order_id))
   end
-
-  def show
-  end
-
 
   def new
     @request = Request.new(params.permit(:order_id))
   end
 
-
-  def edit
-  end
 
   def create
     @request = Request.new(request_params)
