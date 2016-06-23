@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Orden:  <%= @order.name %> </h2>
+  
+<h3> Se pide en: <%= @order.provider.name %> </h3>
+
+<h3> Menu: </h3>
+
+<ul>
+    <% @order.provider.menu.lines.each do |line| %>
+		<li><%= line %></li>
+    <% end %>
+</ul> 
+
+<h3> Pedidos: </h3>
+<ul>
+	<% @order.requests.each do |request| %>
+		<li>
+			<strong><%= request.requester %>: </strong>
+	    	<%= request.comment %>
+        </li> 
+	<% end %>
+</ul>
+
+<%= link_to 'Agregar pedido', new_order_request_path(@order) %> <br>
+
+<%= link_to 'Back', orders_path %>
