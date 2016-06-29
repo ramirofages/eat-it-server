@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully disabled.' }
-        format.json { render :show, status: :updated, location: @order }
+        format.json { render :show, status: :ok, location: @order }
       else
         format.html { redirect_to @order }
         format.json { render json: @order.errors, status: :unprocessable_entity }
