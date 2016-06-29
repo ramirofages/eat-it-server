@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628002830) do
+ActiveRecord::Schema.define(version: 20160629213209) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160628002830) do
     t.datetime "updated_at",  null: false
     t.integer  "provider_id"
     t.string   "description"
+    t.boolean  "enabled"
   end
 
   add_index "orders", ["provider_id"], name: "index_orders_on_provider_id"

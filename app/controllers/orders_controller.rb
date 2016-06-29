@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :disable]
 
   # GET /orders
   # GET /orders.json
@@ -19,6 +19,20 @@ class OrdersController < ApplicationController
     @providers = Provider.pluck(:name, :id)
   end
 
+  # POST /orders/1/disable
+  # POST /orders/1/disable.json
+  def disable
+    @order.update({enabled: false})
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to @order, notice: 'Order was successfully disabled.' }
+        format.json { render :show, status: :updated, location: @order }
+      else
+        format.html { redirect_to @order }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # GET /orders/1/edit
   def edit
   end
@@ -27,7 +41,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order.enabled = true
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
